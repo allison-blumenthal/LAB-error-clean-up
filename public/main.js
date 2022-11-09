@@ -1,6 +1,6 @@
 // import '../styles/main.scss'; // You have to import your styles for them to work. Comment in this line
 
-import { students, voldysArmy, houses } from '../components/student-data';
+import { students, voldysArmy, houses } from '../components/data/student-data';
 import renderToDOM from '../utils/renderToDom';
 import htmlStructure from '../components/basic-html-structure/html-structure';
 import header from '../components/basic-html-structure/html-head';
@@ -11,26 +11,7 @@ import filterBtnRow from '../components/basic-html-structure/filter-btn-row';
 import createId from '../components/basic-html-structure/create-id';
 
 // ********** LOGIC  ********** //
-// sorts student to a house and then place them in the students array
-const sortStudent = (e) => {
-  e.preventDefault();
-  const sortingHat = houses[Math.floor(Math.random() * houses.length)];
 
-  if (e.target.id === 'sorting') {
-    const student = document.querySelector('#student-name');
-
-    // create the new student object
-    students.push({
-      id: createId(students),
-      name: student.value,
-      house: sortingHat.house,
-      crest: sortingHat.crest
-    });
-
-    student.value = ''; // reset value of input
-    studentsOnDom('#students', students);
-  }
-};
 
 // add form to DOM on start-sorting click.
 // Add events for form after the form is on the DOM
