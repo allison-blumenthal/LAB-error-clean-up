@@ -4,73 +4,11 @@ import { students, voldysArmy, houses } from '../components/student-data';
 import renderToDOM from '../utils/renderToDom';
 import htmlStructure from '../components/basic-html-structure/html-structure';
 import header from '../components/basic-html-structure/html-head';
-
-// ********** HTML Components  ********** //
-// the basic HMTL structure of app
-
-
-
-const startSortingBtn = () => {
-  const domString = '<button type="button" class="btn btn-info" id="start-sorting">Start the Sorting Ceremony!</button>';
-
-  renderToDOM('#form-container', domString);
-};
-
-const studentAreas = () => {
-  const domString = `<div id="students">No Students</div>
-  <div id="voldy">No Death Eaters</div>`;
-
-  renderToDOM('#student-container', domString);
-};
-
-const studentsOnDom = (divId, array, house = 'Hogwarts') => {
-  let domString = '';
-  if (!array.length) {
-    domString += `NO ${house.toUpperCase()} STUDENTS`;
-  }
-
-  array.forEach((student) => {
-    domString += `
-    <div class="card bg-dark text-white">
-      <img src="${
-  divId === '#voldy'
-    ? 'https://carboncostume.com/wordpress/wp-content/uploads/2019/10/deatheater-harrypotter.jpg' : student.crest}" 
-          class="card-img" alt="${student.house} crest">
-      <div class="card-img-overlay">
-        <h5 class="card-title">${student.name}</h5>
-        ${
-  divId === '#voldy'
-    ? '<p class="card-text">Death Eater</p>'
-    : ` <p class="card-text">${student.house}</p>
-          <button type="button" id="expel--${student.id}" class="btn btn-danger btn-sm">Expel</button>`
-}
-      </div>
-    </div>
-    `;
-  });
-  renderToDOM(divId, domString);
-};
-
-const filterBtnRow = () => {
-  const domString = `<div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" id="filter--hufflepuff" class="btn btn-warning btn-sm">Hufflepuff</button>
-      <button type="button" class="btn btn-primary btn-sm" id="filter--ravenclaw">Ravenclaw</button>
-      <button type="button" class="btn btn-success btn-sm" id="filter--slytherin">Slytherin</button>
-      <button type="button" class="btn btn-danger btn-sm" id="filter--gryffindor">Gryffindor</button>
-      <button type="button" class="btn btn-secondary btn-sm" id="filter--all">All</button>
-    </div>`;
-
-  renderToDOM('#filter-container', domString);
-};
-
-// Create a new ID for the students
-const createId = (array) => {
-  if (array.length) {
-    const idArray = array.map((el) => el.id);
-    return Math.max(...idArray) + 1;
-  }
-  return 0;
-};
+import startSortingBtn from '../components/basic-html-structure/start-sorting-btn';
+import studentAreas from '../components/basic-html-structure/student-areas';
+import studentsOnDom from '../components/basic-html-structure/students-on-dom';
+import filterBtnRow from '../components/basic-html-structure/filter-btn-row';
+import createId from '../components/basic-html-structure/create-id';
 
 // ********** LOGIC  ********** //
 // sorts student to a house and then place them in the students array
